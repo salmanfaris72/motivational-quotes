@@ -32,7 +32,10 @@ const quotes = [
   "Stay patient and trust your journey.",
   "If it was easy, everyone would do it.",
   "If you want it, work for it.",
-  "Keep going. You’re getting there."
+  "Keep going. You’re getting there.",
+  "Become the person who never quits.",
+  "Work until expensive becomes cheap.",
+  "Be the 1% that actually does it."
 ];
 
 const q=document.getElementById("quote-text"),i=document.getElementById("instruction-prompt");let idx=-1,typing=false,timer=null,text="",chars=0,instShown=false;const DELAY=55,START=300;function align(t){q.classList.toggle("text-left",t.length>=35);q.classList.toggle("text-center",t.length<35)}function type(){typing=true;chars++;q.innerHTML=text.slice(0,chars)+'<span class="typing-cursor"></span>';if(chars>=text.length){typing=false;q.innerHTML=text;if(!instShown){instShown=true;setTimeout(()=>i.style.opacity="1",300)}return}timer=setTimeout(type,DELAY)}function start(t){if(timer)clearTimeout(timer);text=t;chars=0;align(t);q.style.opacity="0";setTimeout(()=>{q.style.opacity="1";type()},START)}function next(){idx=(idx+1)%quotes.length;start(quotes[idx]);if(instShown)i.style.opacity="0"}function click(){if(typing){clearTimeout(timer);typing=false;chars=text.length;q.innerHTML=text;if(!instShown){instShown=true;setTimeout(()=>i.style.opacity="1",300)}}else next()}document.addEventListener("DOMContentLoaded",()=>{q.style.opacity="1";next()});document.body.onclick=click;
